@@ -80,3 +80,42 @@ fun ErrorMessage(
         color = Red
     )
 }
+
+@Composable
+fun LendyButton(
+    modifier: Modifier = Modifier,
+    enabled: Boolean,
+    text: String,
+    onClick: () -> Unit
+) {
+    singleClickEvent { singleEvent ->
+        Button(
+            modifier = modifier
+                .padding(
+                    start = 30.dp,
+                    end = 30.dp
+                )
+                .fillMaxWidth()
+                .height(52.dp),
+            shape = RoundedCornerShape(8.dp),
+            onClick = {
+                singleEvent.event {
+                    onClick()
+                }
+            },
+            colors = ButtonColors(
+                disabledContentColor = White,
+                disabledContainerColor = Gray300,
+                contentColor = White,
+                containerColor = Main
+            ),
+            enabled = enabled
+        ) {
+            Text(
+                text = text,
+                style = LendyFontStyle.semibold20,
+                color = White
+            )
+        }
+    }
+}
