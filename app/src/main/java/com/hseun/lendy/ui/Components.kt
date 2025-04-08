@@ -61,3 +61,22 @@ fun LendyTopBar(
         )
     )
 }
+
+@Composable
+fun ErrorMessage(
+    modifier: Modifier = Modifier,
+    errorType: InputErrorType
+) {
+    Text(
+        modifier = modifier
+            .padding(
+                start = 32.dp,
+                end = 32.dp,
+                top = 2.dp
+            )
+            .fillMaxWidth(),
+        text = stringResource(inputErrorMessage(errorType)),
+        style = LendyFontStyle.medium12,
+        color = Red
+    )
+}
