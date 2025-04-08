@@ -57,7 +57,7 @@ val Pretendard = FontFamily(
     )
 )
 
-object AppFontStyle {
+object LendyFontStyle {
     private val defaultTextColor = Black
 
     val regular12 = TextStyle(
@@ -101,6 +101,12 @@ object AppFontStyle {
         fontFamily = Pretendard,
         fontWeight = FontWeight.Medium,
         fontSize = 16.sp,
+        color = defaultTextColor
+    )
+    val medium17 = TextStyle(
+        fontFamily = Pretendard,
+        fontWeight = FontWeight.Medium,
+        fontSize = 18.sp,
         color = defaultTextColor
     )
     val medium18 = TextStyle(
