@@ -8,7 +8,7 @@ enum class InputErrorType {
 
     ID_REGEX,
     PW_REGEX,
-    NOW_SAME_PW,
+    NOT_SAME_PW,
     OVERLAP_ID,
 
     OVER_MAX_PRICE,
@@ -22,7 +22,7 @@ fun inputErrorMessage(errorType: InputErrorType): Int {
 
         InputErrorType.ID_REGEX -> R.string.error_id_regex
         InputErrorType.PW_REGEX -> R.string.error_pw_regex
-        InputErrorType.NOW_SAME_PW -> R.string.error_not_same_pw
+        InputErrorType.NOT_SAME_PW -> R.string.error_not_same_pw
         InputErrorType.OVERLAP_ID -> R.string.error_overlap_id
 
         InputErrorType.OVER_MAX_PRICE -> R.string.error_over_max_price
