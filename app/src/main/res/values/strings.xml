@@ -12,4 +12,16 @@
     
     <string name="confirm">확인</string>
     <string name="cancel">취소</string>
+
+    <string name="auth_id">아이디</string>
+    <string name="auth_pw">비밀번호</string>
+    <string name="auth_pw_check">비밀번호 확인</string>
+
+    <string name="signup">회원가입</string>
+    <string name="signup_is_member">이미 가입하셨나요?</string>
+    <string name="signup_go_login">로그인하기</string>
+
+    <string name="login">로그인</string>
+    <string name="login_is_not_member">아직 회원이 아니신가요?</string>
+    <string name="login_go_signup">회원가입하기</string>
 </resources>
