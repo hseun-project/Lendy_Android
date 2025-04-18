@@ -3,12 +3,8 @@ package com.hseun.lendy.network
 import com.hseun.lendy.auth.signin.model.SignInRequest
 import com.hseun.lendy.auth.signin.model.SignInResponse
 import com.hseun.lendy.auth.signup.data.SignUpRequest
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.android.qualifiers.ApplicationContext
 import retrofit2.Response
 import retrofit2.http.Body
-import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
 

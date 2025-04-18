@@ -52,9 +52,7 @@ class SignUpViewModel @Inject constructor(
             isLoading = false
             result.onSuccess {
                 isSignUpSuccess = true
-                Log.d("signUp", result.toString())
             }.onFailure {
-                Log.d("signUp", it.message.toString())
                 if (it.message == "Overlap userId") {
                     idErrorType = InputErrorType.OVERLAP_ID
                 } else {

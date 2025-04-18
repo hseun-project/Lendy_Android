@@ -1,25 +1,17 @@
 package com.hseun.lendy.auth.signup
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
@@ -27,6 +19,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.hseun.lendy.R
 import com.hseun.lendy.auth.signup.viewmodel.SignUpViewModel
 import com.hseun.lendy.ui.AuthButton
+import com.hseun.lendy.ui.AuthLogo
 import com.hseun.lendy.ui.LendyInput
 import com.hseun.lendy.ui.LendyPasswordInput
 import com.hseun.lendy.ui.theme.White
@@ -79,20 +72,7 @@ fun SignUpScreen(
             modifier = modifier.align(Alignment.TopCenter),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            Spacer(modifier = modifier.height(80.dp))
-            Image(
-                modifier = modifier
-                    .padding(
-                        start = 120.dp,
-                        end = 120.dp
-                    )
-                    .fillMaxWidth()
-                    .wrapContentHeight(),
-                painter = painterResource(id = R.drawable.lendy_logo_auth),
-                contentDescription = "Lendy Logo",
-                contentScale = ContentScale.FillWidth
-            )
-            Spacer(modifier = modifier.height(52.dp))
+            AuthLogo()
             LendyInput(
                 label = stringResource(id = R.string.auth_id),
                 input = userId,

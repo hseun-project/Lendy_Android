@@ -40,7 +40,6 @@ fun LendySplashScreen(
     val isSuccess = viewModel.isAutoLoginSuccess
 
     LaunchedEffect(Unit) {
-        viewModel.autoLogin()
         launch {
             alpha.animateTo(
                 targetValue = 1f,
@@ -58,6 +57,7 @@ fun LendySplashScreen(
                     easing = FastOutSlowInEasing
                 )
             )
+            viewModel.autoLogin()
         }
     }
 
@@ -70,11 +70,9 @@ fun LendySplashScreen(
             modifier = modifier
                 .align(Alignment.Center)
                 .padding(
-                    start = 70.dp,
-                    end = 70.dp,
                     bottom = 40.dp
                 )
-                .fillMaxWidth()
+                .fillMaxWidth(0.7f)
                 .wrapContentHeight(),
             painter = painterResource(id = R.drawable.lendy_logo_full),
             contentDescription = "Lendy Logo",
