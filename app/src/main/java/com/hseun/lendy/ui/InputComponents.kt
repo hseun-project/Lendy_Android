@@ -1,6 +1,7 @@
 package com.hseun.lendy.ui
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -20,12 +21,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.focus.FocusDirection
-import androidx.compose.ui.focus.FocusManager
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -36,9 +37,12 @@ import com.hseun.lendy.ui.theme.Gray400
 import com.hseun.lendy.ui.theme.Gray500
 import com.hseun.lendy.ui.theme.LendyFontStyle
 import com.hseun.lendy.ui.theme.Main
+import com.hseun.lendy.ui.theme.Red
+import com.hseun.lendy.utils.InputErrorType
+import com.hseun.lendy.utils.inputErrorMessage
 
 @Composable
-fun LendyInput(
+private fun LendyTextField(
     modifier: Modifier = Modifier,
     input: String,
     hint: String,
@@ -50,12 +54,6 @@ fun LendyInput(
 
     Box(
         modifier = modifier
-            .padding(
-                start = 30.dp,
-                end = 30.dp
-            )
-            .fillMaxWidth()
-            .wrapContentHeight()
             .drawBehind {
                 drawLine(
                     color = if (isFocused) Main else Gray500,
@@ -110,7 +108,7 @@ fun LendyInput(
 }
 
 @Composable
-fun LendyPassword(
+private fun LendyPasswordTextField(
     modifier: Modifier = Modifier,
     input: String,
     hint: String,
@@ -123,12 +121,6 @@ fun LendyPassword(
 
     Box(
         modifier = modifier
-            .padding(
-                start = 30.dp,
-                end = 30.dp
-            )
-            .fillMaxWidth()
-            .wrapContentHeight()
             .drawBehind {
                 drawLine(
                     color = if (isFocused) Main else Gray500,
@@ -141,7 +133,6 @@ fun LendyPassword(
                 start = 4.dp,
                 end = 6.dp,
                 top = 11.dp,
-                bottom = 11.dp
             )
             .onFocusChanged { focusState ->
                 isFocused = focusState.isFocused
@@ -190,8 +181,10 @@ fun LendyPassword(
                 isShowPassword = !isShowPassword
             }
         ) {
-            val passwordIcon = if (isShowPassword) R.drawable.icon_password_show else R.drawable.icon_password_hide
-            val contentDescription = if (isShowPassword) "Hide password Icon" else "Show password Icon"
+            val passwordIcon =
+                if (isShowPassword) R.drawable.icon_password_show else R.drawable.icon_password_hide
+            val contentDescription =
+                if (isShowPassword) "Hide password Icon" else "Show password Icon"
 
             Icon(
                 modifier = modifier.size(20.dp),
@@ -203,7 +196,7 @@ fun LendyPassword(
 }
 
 @Composable
-fun LendyNumberInput(
+private fun LendyNumberTextField(
     modifier: Modifier = Modifier,
     input: String,
     imeAction: ImeAction,
@@ -266,4 +259,122 @@ fun LendyNumberInput(
             }
         )
     }
+}
+
+@Composable
+private fun InputLabel(
+    label: String
+) {
+    Text(
+        text = label,
+        style = LendyFontStyle.semibold14
+    )
+}
+
+@Composable
+private fun ErrorMessage(
+    modifier: Modifier = Modifier,
+    errorType: InputErrorType
+) {
+    Text(
+        modifier = modifier
+            .padding(
+                start = 2.dp,
+                end = 2.dp,
+                top = 2.dp
+            )
+            .fillMaxWidth(),
+        text = stringResource(inputErrorMessage(errorType)),
+        style = LendyFontStyle.medium12,
+        color = Red
+    )
+}
+
+@Composable
+fun LendyBasicInput(
+    modifier: Modifier = Modifier,
+    label: String,
+    errorType: InputErrorType,
+    textField: @Composable () -> Unit
+) {
+    Column(
+        modifier = modifier
+            .padding(
+                start = 30.dp,
+                end = 30.dp
+            )
+            .fillMaxWidth()
+            .wrapContentHeight()
+    ) {
+        InputLabel(label = label)
+        textField()
+        ErrorMessage(errorType = errorType)
+    }
+}
+
+@Composable
+fun LendyInput(
+    label: String,
+    input: String,
+    hint: String,
+    imeAction: ImeAction,
+    errorType: InputErrorType,
+    onValueChange: (String) -> Unit
+) {
+    LendyBasicInput(
+        label = label,
+        errorType = errorType,
+        textField = {
+            LendyTextField(
+                input = input,
+                hint = hint,
+                imeAction = imeAction,
+                onValueChange = onValueChange
+            )
+        }
+    )
+}
+
+@Composable
+fun LendyPasswordInput(
+    label: String,
+    input: String,
+    hint: String,
+    imeAction: ImeAction,
+    errorType: InputErrorType,
+    onValueChange: (String) -> Unit
+) {
+    LendyBasicInput(
+        label = label,
+        errorType = errorType,
+        textField = {
+            LendyPasswordTextField(
+                input = input,
+                hint = hint,
+                imeAction = imeAction,
+                onValueChange = onValueChange
+            )
+        }
+    )
+}
+
+@Composable
+fun LendyNumberInput(
+    label: String,
+    input: String,
+    imeAction: ImeAction,
+    errorType: InputErrorType,
+    onValueChange: (String) -> Unit
+) {
+    LendyBasicInput(
+        label = label,
+        errorType = errorType,
+        textField = {
+            LendyNumberTextField(
+                input = input,
+                imeAction = imeAction,
+                onValueChange = onValueChange
+            )
+        }
+    )
 }
