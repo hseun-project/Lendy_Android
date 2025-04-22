@@ -40,8 +40,8 @@ fun VerificationScreen(
     val isLoading = viewModel.isLoading
     val isGetUrl = viewModel.isGetUrl
 
-    LaunchedEffect(isGetUrl) {
-        if (isGetUrl == null && !isLoading) {
+    LaunchedEffect(Unit) {
+        if (!isLoading && isGetUrl == null) {
             viewModel.getStartUrl(userId)
         } else if (isGetUrl == false) {
             Toast.makeText(context, "본인인증 화면을 불러오는 데 실패했습니다", Toast.LENGTH_SHORT).show()

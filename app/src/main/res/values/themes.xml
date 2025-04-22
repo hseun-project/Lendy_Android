@@ -3,6 +3,6 @@
     <style name="Theme.Lendy" parent="android:Theme.Material.Light.NoActionBar" />
     
     <style name="Theme.MySplashScreen" parent="Theme.Lendy">
-        <item name="android:windowSplashScreenAnimatedIcon" tools:targetApi="s">@drawable/lendy_logo_full</item>
+        <item name="android:windowSplashScreenAnimatedIcon" tools:targetApi="s">@color/white</item>
     </style>
 </resources>
