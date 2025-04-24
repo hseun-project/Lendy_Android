@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -53,8 +54,11 @@ fun LendyTopBar(
             },
         title = {
             Image(
+                modifier = modifier
+                    .height(36.dp),
                 painter = painterResource(id = R.drawable.lendy_logo_header),
-                contentDescription = "Lendy Logo in Header"
+                contentDescription = "Lendy Logo in Header",
+                contentScale = ContentScale.FillHeight
             )
         },
         scrollBehavior = scrollBehavior,
