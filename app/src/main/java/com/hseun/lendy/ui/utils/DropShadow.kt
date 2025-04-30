@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import com.hseun.lendy.ui.theme.Black
 
 fun Modifier.dropShadow(
-    shape: Shape = RoundedCornerShape(8.dp),
+    shape: Shape = RoundedCornerShape(4.dp),
     color: Color = Black.copy(0.25f),
     blur: Dp = 2.dp,
     offsetX: Dp = 0.dp,
