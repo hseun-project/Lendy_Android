@@ -17,7 +17,10 @@ fun MainNavigation(
         startDestination = BottomNavItem.Home.screenRoute
     ) {
         composable(BottomNavItem.Home.screenRoute) {
-            HomeScreen()
+            HomeScreen(
+                navController = navController,
+                navToApplyLoan = {}
+            )
         }
         composable(BottomNavItem.OpenLoan.screenRoute) {
             // 공개 대출 화면
