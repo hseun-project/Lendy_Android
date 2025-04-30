@@ -11,6 +11,8 @@ val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
 val Main = Color(0xFF487FFF)
+val Main50 = Color(0xFF8CAEFF)
+val Main300 = Color(0XFF094AE3)
 
 val Gray000 = Color(0xFFFDFDFD)
 val Gray100 = Color(0xFFEBEBEB)
@@ -33,3 +35,4 @@ val White = Color(0xFFFFFFFF)
 
 val tagBlue = Color(0x33487FFF)
 val tagPurple = Color(0x33B048FF)
+val BackgroundColor = Color(0xFFF8F8FA)

@@ -189,6 +189,12 @@ object LendyFontStyle {
         fontSize = 15.sp,
         color = defaultTextColor
     )
+    val bold18 = TextStyle(
+        fontFamily = Pretendard,
+        fontWeight = FontWeight.Bold,
+        fontSize = 18.sp,
+        color = defaultTextColor
+    )
     val bold20 = TextStyle(
         fontFamily = Pretendard,
         fontWeight = FontWeight.Bold,
