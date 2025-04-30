@@ -6,6 +6,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.annotation.Signed
 import javax.inject.Singleton
 
 @Module
@@ -36,5 +37,17 @@ object ApiProvider {
     @Singleton
     fun provideOpenApi(retrofit: Retrofit): OpenApi {
         return retrofit.create(OpenApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideLoansApi(retrofit: Retrofit): LoansApi {
+        return retrofit.create(LoansApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideCreditApi(retrofit: Retrofit): CreditApi {
+        return retrofit.create(CreditApi::class.java)
     }
 }
