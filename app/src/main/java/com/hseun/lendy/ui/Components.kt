@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -33,6 +34,7 @@ import com.hseun.lendy.ui.theme.LendyFontStyle
 import com.hseun.lendy.ui.theme.Main
 import com.hseun.lendy.ui.theme.White
 import com.hseun.lendy.ui.utils.noRippleClickable
+import com.hseun.lendy.ui.utils.singleClickEvent
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -77,13 +79,9 @@ fun LendyButton(
 ) {
     Button(
         modifier = modifier
-            .padding(
-                start = 30.dp,
-                end = 30.dp
-            )
             .fillMaxWidth()
             .height(52.dp),
-        shape = RoundedCornerShape(8.dp),
+        shape = RoundedCornerShape(4.dp),
         onClick = onClick,
         colors = ButtonColors(
             disabledContentColor = White,
@@ -98,6 +96,39 @@ fun LendyButton(
             style = LendyFontStyle.semibold20,
             color = White
         )
+    }
+}
+
+@Composable
+fun LendyLoanListButton(
+    modifier: Modifier = Modifier,
+    text: String,
+    onClick: () -> Unit
+) {
+    singleClickEvent { singleEvent ->
+        Button(
+            modifier = modifier
+                .fillMaxWidth()
+                .height(42.dp),
+            shape = RoundedCornerShape(4.dp),
+            onClick = {
+                singleEvent.event {
+                    onClick()
+                }
+            },
+            colors = ButtonColors(
+                containerColor = Main,
+                contentColor = White,
+                disabledContainerColor = Gray300,
+                disabledContentColor = White
+            )
+        ) {
+            Text(
+                text = text,
+                style = LendyFontStyle.semibold18,
+                color = White
+            )
+        }
     }
 }
 
