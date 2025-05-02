@@ -37,4 +37,16 @@ object ApiProvider {
     fun provideOpenApi(retrofit: Retrofit): OpenApi {
         return retrofit.create(OpenApi::class.java)
     }
+
+    @Provides
+    @Singleton
+    fun provideLoansApi(retrofit: Retrofit): LoansApi {
+        return retrofit.create(LoansApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideCreditApi(retrofit: Retrofit): CreditApi {
+        return retrofit.create(CreditApi::class.java)
+    }
 }

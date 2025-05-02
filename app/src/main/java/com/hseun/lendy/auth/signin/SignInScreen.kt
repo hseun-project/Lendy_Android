@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
@@ -88,7 +89,12 @@ fun SignInScreen(
             )
         }
         AuthButton(
-            modifier = modifier.align(Alignment.BottomCenter),
+            modifier = modifier
+                .align(Alignment.BottomCenter)
+                .padding(
+                    start = 30.dp,
+                    end = 30.dp
+                ),
             enabled = buttonEnabled,
             buttonText = stringResource(id = R.string.login),
             isNotText = stringResource(id = R.string.login_is_not_member),
