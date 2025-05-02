@@ -97,7 +97,7 @@ private fun ApplyLoanItemText(
             Text(
                 modifier = modifier
                     .padding(top = 4.dp),
-                text = "상환기한: ${during}${if(duringType == DuringType.DAY) "일" else "개월"}",
+                text = "상환기한: ${during}${duringType.displayText}",
                 style = LendyFontStyle.medium14
             )
         }
