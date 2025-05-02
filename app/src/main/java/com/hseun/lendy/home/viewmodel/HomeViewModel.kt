@@ -34,15 +34,15 @@ class HomeViewModel @Inject constructor(
                 creditScore = response.creditScore
                 name = response.name
             }
-            val applyResult = repository.getApplyLoanRequest()
+            val applyResult = repository.getApplyLoanRequestList()
             applyResult.onSuccess { response ->
                 applyLoanList = response
             }
-            val myRepayResult = repository.getMyRepay()
+            val myRepayResult = repository.getMyRepayList()
             myRepayResult.onSuccess { response ->
                 myRepayList = response
             }
-            val lentRepayResult = repository.getLentRepay()
+            val lentRepayResult = repository.getLentRepayList()
             lentRepayResult.onSuccess { response ->
                 lentRepayList = response
             }

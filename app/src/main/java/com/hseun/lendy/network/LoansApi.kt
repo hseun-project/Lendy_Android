@@ -11,14 +11,14 @@ import retrofit2.http.Path
 
 interface LoansApi {
     @GET("/loans/apply/{loanType}")
-    suspend fun getApplyLoanRequest(
+    suspend fun getApplyLoanRequestList(
         @Header("Authorization") token: String,
         @Path("loanType") loanType: ApplyLoan
     ): Response<List<ApplyLoanListItemData>>
 
     @GET("/loans/repay")
-    suspend fun getMyRepay(@Header("Authorization") token: String): Response<List<MyRepayListItemData>>
+    suspend fun getMyRepayList(@Header("Authorization") token: String): Response<List<MyRepayListItemData>>
 
     @GET("/loans/lent")
-    suspend fun getLentRepay(@Header("Authorization") token: String): Response<List<LentRepayListItemData>>
+    suspend fun getLentRepayList(@Header("Authorization") token: String): Response<List<LentRepayListItemData>>
 }

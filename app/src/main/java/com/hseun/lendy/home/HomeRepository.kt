@@ -36,9 +36,9 @@ class HomeRepository(
         }
     }
 
-    suspend fun getApplyLoanRequest(): Result<List<ApplyLoanListItemData>> {
+    suspend fun getApplyLoanRequestList(): Result<List<ApplyLoanListItemData>> {
         return try {
-            val response = api.getApplyLoanRequest(token, ApplyLoan.PRIVATE_LOAN)
+            val response = api.getApplyLoanRequestList(token, ApplyLoan.PRIVATE_LOAN)
             if (response.isSuccessful) {
                 val responseBody = response.body()
                 if (responseBody != null) {
@@ -56,9 +56,9 @@ class HomeRepository(
         }
     }
 
-    suspend fun getMyRepay(): Result<List<MyRepayListItemData>> {
+    suspend fun getMyRepayList(): Result<List<MyRepayListItemData>> {
         return try {
-            val response = api.getMyRepay(token)
+            val response = api.getMyRepayList(token)
             if (response.isSuccessful) {
                 val responseBody = response.body()
                 if (responseBody != null) {
@@ -76,9 +76,9 @@ class HomeRepository(
         }
     }
 
-    suspend fun getLentRepay(): Result<List<LentRepayListItemData>> {
+    suspend fun getLentRepayList(): Result<List<LentRepayListItemData>> {
         return try {
-            val response = api.getLentRepay(token)
+            val response = api.getLentRepayList(token)
             if (response.isSuccessful) {
                 val responseBody = response.body()
                 if (responseBody != null) {

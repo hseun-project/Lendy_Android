@@ -24,7 +24,7 @@ fun calculateDueDate(startDate: Date, duringType: DuringType, during: Int): Stri
         val endDate = calculateEndDate(startDate, duringType, during)
         val today = LocalDate.now()
         val dueDate = ChronoUnit.DAYS.between(today, endDate)
-        if (dueDate >= 0) "D-${dueDate}" else "D+${-dueDate}"
+        if (dueDate > 0) "D-${dueDate}" else if (dueDate < 0) "D+${-dueDate}" else "D-DAY"
     } catch (e: Exception) {
         Log.e("calculateDueDate", e.message.toString())
         "D-0"
