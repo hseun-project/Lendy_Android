@@ -11,6 +11,7 @@ import com.hseun.lendy.loan.apply.data.ApplyLoanListItemData
 import com.hseun.lendy.loan.repay.data.LentRepayListItemData
 import com.hseun.lendy.loan.repay.data.MyRepayListItemData
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -29,21 +30,22 @@ class HomeViewModel @Inject constructor(
     fun getInfo() {
         viewModelScope.launch {
             isLoading = true
-            val creditResult = repository.getCredit()
-            creditResult.onSuccess { response ->
+            val creditResult = async { repository.getCredit() }
+            val applyResult = async { repository.getApplyLoanRequestList() }
+            val myRepayResult = async { repository.getMyRepayList() }
+            val lentRepayResult = async { repository.getLentRepayList() }
+
+            creditResult.await().onSuccess { response ->
                 creditScore = response.creditScore
                 name = response.name
             }
-            val applyResult = repository.getApplyLoanRequestList()
-            applyResult.onSuccess { response ->
+            applyResult.await().onSuccess { response ->
                 applyLoanList = response
             }
-            val myRepayResult = repository.getMyRepayList()
-            myRepayResult.onSuccess { response ->
+            myRepayResult.await().onSuccess { response ->
                 myRepayList = response
             }
-            val lentRepayResult = repository.getLentRepayList()
-            lentRepayResult.onSuccess { response ->
+            lentRepayResult.await().onSuccess { response ->
                 lentRepayList = response
             }
             isLoading = false
