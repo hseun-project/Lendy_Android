@@ -25,6 +25,7 @@ class HomeRepository(
                 if (responseBody != null) {
                     Result.success(responseBody)
                 } else {
+                    Log.e("getCredit", response.code().toString())
                     Result.failure(Exception("응답 바디 없음"))
                 }
             } else {
