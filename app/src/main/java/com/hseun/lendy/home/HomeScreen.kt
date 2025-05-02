@@ -233,7 +233,7 @@ fun LentRepayList(
         navController = navController,
         routerBuilder = { data -> "lentRepayDetail/${data.loanId}" },
         listItemComponent = { data, onClick ->
-            LentRepayListItem(data = data)
+            LentRepayListItem(data = data, onClick = onClick)
         }
     )
 }

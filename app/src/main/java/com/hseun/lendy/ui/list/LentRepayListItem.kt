@@ -25,6 +25,7 @@ import com.hseun.lendy.ui.theme.LendyFontStyle
 import com.hseun.lendy.ui.theme.Main
 import com.hseun.lendy.ui.theme.White
 import com.hseun.lendy.ui.utils.dropShadow
+import com.hseun.lendy.ui.utils.noRippleClickable
 import com.hseun.lendy.utils.DuringType
 import com.hseun.lendy.utils.calculateEndDate
 import java.util.Date
@@ -32,7 +33,8 @@ import java.util.Date
 @Composable
 fun LentRepayListItem(
     modifier: Modifier = Modifier,
-    data: LentRepayListItemData
+    data: LentRepayListItemData,
+    onClick: () -> Unit
 ) {
     Column (
         modifier = modifier
@@ -43,6 +45,7 @@ fun LentRepayListItem(
                 color = White,
                 shape = RoundedCornerShape(4.dp)
             )
+            .noRippleClickable { onClick() }
             .padding(
                 top = 12.dp,
                 bottom = 12.dp,
