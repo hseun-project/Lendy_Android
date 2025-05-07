@@ -49,4 +49,10 @@ object ApiProvider {
     fun provideCreditApi(retrofit: Retrofit): CreditApi {
         return retrofit.create(CreditApi::class.java)
     }
+
+    @Provides
+    @Singleton
+    fun provideUserApi(retrofit: Retrofit): UserApi {
+        return retrofit.create(UserApi::class.java)
+    }
 }
