@@ -32,18 +32,12 @@ class VerificationViewModel @Inject constructor(
             isLoading = true
             val result = repository.getVerificationUrl(userId)
             isLoading = false
-            Log.d("verification", result.toString())
             result.onSuccess {
-                url = it
-                Log.d("verification", url)
+                url = it.authUrl
                 isGetUrl = true
             }.onFailure {
                 isGetUrl = false
             }
         }
-    }
-
-    fun changeIsGetUrl() {
-        isGetUrl = null
     }
 }

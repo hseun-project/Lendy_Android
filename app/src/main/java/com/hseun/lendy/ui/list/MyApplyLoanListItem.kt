@@ -1,5 +1,6 @@
 package com.hseun.lendy.ui.list
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -23,6 +24,7 @@ import com.hseun.lendy.ui.utils.dropShadow
 import com.hseun.lendy.utils.ApplyLoan
 import com.hseun.lendy.utils.ApplyState
 
+@SuppressLint("DefaultLocale")
 @Composable
 fun MyApplyLoanListItem(
     modifier: Modifier = Modifier,
@@ -58,11 +60,11 @@ fun MyApplyLoanListItem(
         }
         MyApplyItemText(
             label = "요청 금액",
-            value = data.money.toString()
+            value = "${String.format("%,d", data.money)}원"
         )
         MyApplyItemText(
             label = "이자율",
-            value = data.interest.toString()
+            value = "${data.interest}%"
         )
         MyApplyItemText(
             label = "상환기한",
