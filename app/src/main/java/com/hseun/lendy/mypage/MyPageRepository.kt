@@ -1,11 +1,11 @@
 package com.hseun.lendy.mypage
 
-import android.util.Log
 import com.hseun.lendy.local.AuthPreference
 import com.hseun.lendy.mypage.data.MyApplyLoanListItemData
 import com.hseun.lendy.mypage.data.MyPageResponse
 import com.hseun.lendy.network.AuthApi
 import com.hseun.lendy.network.UserApi
+import com.hseun.lendy.utils.apiCall
 
 class MyPageRepository(
     private val api: UserApi,
@@ -15,57 +15,19 @@ class MyPageRepository(
     private val token = pref.getAccessToken() ?: "token"
 
     suspend fun getMyInfo(): Result<MyPageResponse> {
-        return try {
-            val response = api.getMyInfo(token)
-            if (response.isSuccessful) {
-                val responseBody = response.body()
-                if (responseBody != null) {
-                    Result.success(responseBody)
-                } else {
-                    Log.e("getMyInfo", response.code().toString())
-                    Result.failure(Exception("응답 바디 없음"))
-                }
-            } else {
-                Result.failure(Exception("MyInfo Get Failed"))
-            }
-        } catch (e: Exception) {
-            Log.e("getMyInfo", e.message.toString())
-            Result.failure(e)
-        }
+        return apiCall("getMyInfo") { api.getMyInfo(token) }
     }
 
     suspend fun getMyApplyLoan(): Result<List<MyApplyLoanListItemData>> {
-        return try {
-            val response = api.getMyApplyLoans(token)
-            if (response.isSuccessful) {
-                val responseBody = response.body()
-                if (responseBody != null) {
-                    Result.success(responseBody)
-                } else {
-                    Result.failure(Exception("응답 바디 없음"))
-                }
-            } else {
-                Result.failure(Exception("MyApplyLoan Get Failed"))
-            }
-        } catch (e: Exception) {
-            Log.e("getMyApplyLoan", e.message.toString())
-            Result.failure(e)
-        }
+        return apiCall("getMyApplyLoan") { api.getMyApplyLoans(token) }
     }
 
     suspend fun logout(): Result<Unit> {
-        return try {
-            val response = authApi.logout(token)
-            if (response.isSuccessful) {
-                pref.clearAccessToken()
-                pref.clearRefreshToken()
-                Result.success(Unit)
-            } else {
-                Result.failure(Exception("로그아웃 실패"))
-            }
-        } catch (e: Exception) {
-            Log.e("logout", e.message.toString())
-            Result.failure(e)
+        val response = apiCall("logout") {authApi.logout(token)}
+        if (response.isSuccess) {
+            pref.clearAccessToken()
+            pref.clearRefreshToken()
         }
+        return response
     }
 }
