@@ -33,6 +33,6 @@ val DialogBlue = Color(0xFF5EB3F7)
 val Black = Color(0xFF000000)
 val White = Color(0xFFFFFFFF)
 
-val tagBlue = Color(0x33487FFF)
-val tagPurple = Color(0x33B048FF)
+val TagBlue = Main.copy(0.2f)
+val TagPurple = Purple.copy(0.2f)
 val BackgroundColor = Color(0xFFF8F8FA)

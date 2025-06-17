@@ -16,5 +16,8 @@ interface AuthApi {
     suspend fun signIn(@Body request: SignInRequest): Response<SignInResponse>
 
     @POST("/auth/refresh")
-    suspend fun refresh(@Header("authorization") token: String): Response<SignInResponse>
+    suspend fun refresh(@Header("Authorization") token: String): Response<SignInResponse>
+
+    @POST("/auth/logout")
+    suspend fun logout(@Header("Authorization") token: String): Response<Unit>
 }
